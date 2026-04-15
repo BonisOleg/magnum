@@ -80,6 +80,14 @@
                  itemprop="image"
                  id="gallery-main-img">
           </div>
+        {% elif product.get_display_image_path %}
+          <div class="gallery-main">
+            <img src="{% static product.get_display_image_path %}"
+                 alt="{{ product.name }}"
+                 width="700" height="500"
+                 itemprop="image"
+                 id="gallery-main-img">
+          </div>
         {% endif %}
         {% if images %}
           <div class="gallery-thumbs" role="list" aria-label="{% trans 'Зображення товару' %}">
@@ -171,6 +179,10 @@
         {% if rel.image %}
           <div class="preview-card__img">
             <img src="{{ rel.image.url }}" alt="{{ rel.name }}" loading="lazy" width="400" height="300">
+          </div>
+        {% elif rel.get_display_image_path %}
+          <div class="preview-card__img">
+            <img src="{% static rel.get_display_image_path %}" alt="{{ rel.name }}" loading="lazy" width="400" height="300">
           </div>
         {% else %}
           <div class="preview-card__img preview-card__img--placeholder" aria-hidden="true">

@@ -7,3 +7,4 @@ python manage.py collectstatic --noinput
 python manage.py migrate --noinput
 python manage.py compilemessages --locale=uk --locale=en
 python manage.py seed_catalog
+python manage.py seed_catalog_magnum

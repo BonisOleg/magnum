@@ -89,6 +89,13 @@ class Product(models.Model):
             return images[0].image.url
         return None
 
+    def get_display_image_path(self):
+        """Returns static-relative path (e.g. 'img/vicet-pac.webp') for products
+        that have a bundled WebP fallback, or None."""
+        from catalog.constants import PRODUCT_STATIC_IMAGE_FILENAME
+        filename = PRODUCT_STATIC_IMAGE_FILENAME.get(self.slug)
+        return f"img/{filename}" if filename else None
+
 
 class ProductImage(models.Model):
     product = models.ForeignKey(

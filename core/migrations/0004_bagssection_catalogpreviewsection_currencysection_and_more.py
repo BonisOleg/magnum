@@ -10,6 +10,197 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        # Repair: 0003_ was previously deployed as an empty stub, so its tables
+        # were never created in the DB even though it's marked as applied.
+        # This RunSQL recreates them idempotently (IF NOT EXISTS is a no-op on
+        # fresh databases where 0003_ ran correctly).
+        migrations.RunSQL(
+            sql="""
+CREATE TABLE IF NOT EXISTS "core_aboutsection" (
+    "id" bigserial NOT NULL PRIMARY KEY,
+    "title" varchar(255) NOT NULL,
+    "title_uk" varchar(255) NULL,
+    "title_en" varchar(255) NULL,
+    "lead_text" text NOT NULL,
+    "lead_text_uk" text NULL,
+    "lead_text_en" text NULL,
+    "body_text" text NOT NULL,
+    "body_text_uk" text NULL,
+    "body_text_en" text NULL
+);
+CREATE TABLE IF NOT EXISTS "core_bagtype" (
+    "id" bigserial NOT NULL PRIMARY KEY,
+    "title" varchar(255) NOT NULL,
+    "title_uk" varchar(255) NULL,
+    "title_en" varchar(255) NULL,
+    "description" text NOT NULL,
+    "description_uk" text NULL,
+    "description_en" text NULL,
+    "icon_svg" text NOT NULL DEFAULT '',
+    "feature_1" varchar(255) NOT NULL DEFAULT '',
+    "feature_1_uk" varchar(255) NULL,
+    "feature_1_en" varchar(255) NULL,
+    "feature_2" varchar(255) NOT NULL DEFAULT '',
+    "feature_2_uk" varchar(255) NULL,
+    "feature_2_en" varchar(255) NULL,
+    "feature_3" varchar(255) NOT NULL DEFAULT '',
+    "feature_3_uk" varchar(255) NULL,
+    "feature_3_en" varchar(255) NULL,
+    "order" integer NOT NULL DEFAULT 0,
+    "is_active" boolean NOT NULL DEFAULT TRUE
+);
+CREATE TABLE IF NOT EXISTS "core_catalogpagecontent" (
+    "id" bigserial NOT NULL PRIMARY KEY,
+    "title" varchar(255) NOT NULL,
+    "title_uk" varchar(255) NULL,
+    "title_en" varchar(255) NULL,
+    "description" text NOT NULL,
+    "description_uk" text NULL,
+    "description_en" text NULL,
+    "cta_title" varchar(255) NOT NULL DEFAULT '',
+    "cta_title_uk" varchar(255) NULL,
+    "cta_title_en" varchar(255) NULL,
+    "cta_description" text NOT NULL DEFAULT '',
+    "cta_description_uk" text NULL,
+    "cta_description_en" text NULL,
+    "cta_button_text" varchar(100) NOT NULL DEFAULT '',
+    "cta_button_text_uk" varchar(100) NULL,
+    "cta_button_text_en" varchar(100) NULL
+);
+CREATE TABLE IF NOT EXISTS "core_contactsection" (
+    "id" bigserial NOT NULL PRIMARY KEY,
+    "title" varchar(255) NOT NULL,
+    "title_uk" varchar(255) NULL,
+    "title_en" varchar(255) NULL,
+    "intro_text" text NOT NULL,
+    "intro_text_uk" text NULL,
+    "intro_text_en" text NULL
+);
+CREATE TABLE IF NOT EXISTS "core_flexosection" (
+    "id" bigserial NOT NULL PRIMARY KEY,
+    "title" varchar(255) NOT NULL,
+    "title_uk" varchar(255) NULL,
+    "title_en" varchar(255) NULL,
+    "lead_text" text NOT NULL,
+    "lead_text_uk" text NULL,
+    "lead_text_en" text NULL,
+    "body_text" text NOT NULL,
+    "body_text_uk" text NULL,
+    "body_text_en" text NULL,
+    "cta_text" varchar(100) NOT NULL DEFAULT '',
+    "cta_text_uk" varchar(100) NULL,
+    "cta_text_en" varchar(100) NULL,
+    "cta_url" varchar(500) NOT NULL DEFAULT '',
+    "cta_url_uk" varchar(500) NULL,
+    "cta_url_en" varchar(500) NULL
+);
+CREATE TABLE IF NOT EXISTS "core_herosection" (
+    "id" bigserial NOT NULL PRIMARY KEY,
+    "eyebrow" varchar(255) NOT NULL DEFAULT '',
+    "eyebrow_uk" varchar(255) NULL,
+    "eyebrow_en" varchar(255) NULL,
+    "title" varchar(255) NOT NULL,
+    "title_uk" varchar(255) NULL,
+    "title_en" varchar(255) NULL,
+    "subtitle" text NOT NULL,
+    "subtitle_uk" text NULL,
+    "subtitle_en" text NULL,
+    "background_image" varchar(255) NULL,
+    "cta_primary_text" varchar(100) NOT NULL DEFAULT '',
+    "cta_primary_text_uk" varchar(100) NULL,
+    "cta_primary_text_en" varchar(100) NULL,
+    "cta_primary_url" varchar(500) NOT NULL DEFAULT '',
+    "cta_primary_url_uk" varchar(500) NULL,
+    "cta_primary_url_en" varchar(500) NULL,
+    "cta_secondary_text" varchar(100) NOT NULL DEFAULT '',
+    "cta_secondary_text_uk" varchar(100) NULL,
+    "cta_secondary_text_en" varchar(100) NULL,
+    "cta_secondary_url" varchar(500) NOT NULL DEFAULT '',
+    "cta_secondary_url_uk" varchar(500) NULL,
+    "cta_secondary_url_en" varchar(500) NULL
+);
+CREATE TABLE IF NOT EXISTS "core_serviceitem" (
+    "id" bigserial NOT NULL PRIMARY KEY,
+    "title" varchar(255) NOT NULL,
+    "title_uk" varchar(255) NULL,
+    "title_en" varchar(255) NULL,
+    "description" text NOT NULL,
+    "description_uk" text NULL,
+    "description_en" text NULL,
+    "icon_svg" text NOT NULL DEFAULT '',
+    "order" integer NOT NULL DEFAULT 0,
+    "is_active" boolean NOT NULL DEFAULT TRUE
+);
+CREATE TABLE IF NOT EXISTS "core_sitesettings" (
+    "id" bigserial NOT NULL PRIMARY KEY,
+    "site_name" varchar(100) NOT NULL DEFAULT 'Magnum',
+    "site_name_uk" varchar(100) NULL,
+    "site_name_en" varchar(100) NULL,
+    "tagline" varchar(255) NOT NULL DEFAULT 'Виробництво якісного пакування',
+    "tagline_uk" varchar(255) NULL,
+    "tagline_en" varchar(255) NULL,
+    "copyright_text" varchar(255) NOT NULL DEFAULT 'Всі права захищені',
+    "copyright_text_uk" varchar(255) NULL,
+    "copyright_text_en" varchar(255) NULL,
+    "logo" varchar(255) NULL,
+    "favicon" varchar(255) NULL,
+    "og_image" varchar(255) NULL,
+    "default_meta_title" varchar(255) NOT NULL DEFAULT '',
+    "default_meta_title_uk" varchar(255) NULL,
+    "default_meta_title_en" varchar(255) NULL,
+    "default_meta_description" text NOT NULL DEFAULT '',
+    "default_meta_description_uk" text NULL,
+    "default_meta_description_en" text NULL
+);
+CREATE TABLE IF NOT EXISTS "core_testimonial" (
+    "id" bigserial NOT NULL PRIMARY KEY,
+    "name" varchar(255) NOT NULL,
+    "name_uk" varchar(255) NULL,
+    "name_en" varchar(255) NULL,
+    "text" text NOT NULL,
+    "text_uk" text NULL,
+    "text_en" text NULL,
+    "role" varchar(255) NOT NULL DEFAULT '',
+    "role_uk" varchar(255) NULL,
+    "role_en" varchar(255) NULL,
+    "avatar" varchar(255) NULL,
+    "order" integer NOT NULL DEFAULT 0,
+    "is_active" boolean NOT NULL DEFAULT TRUE
+);
+CREATE TABLE IF NOT EXISTS "core_aboutfeature" (
+    "id" bigserial NOT NULL PRIMARY KEY,
+    "text" varchar(255) NOT NULL,
+    "text_uk" varchar(255) NULL,
+    "text_en" varchar(255) NULL,
+    "order" integer NOT NULL DEFAULT 0,
+    "about_id" bigint NOT NULL
+);
+CREATE TABLE IF NOT EXISTS "core_aboutstat" (
+    "id" bigserial NOT NULL PRIMARY KEY,
+    "value" varchar(100) NOT NULL,
+    "value_uk" varchar(100) NULL,
+    "value_en" varchar(100) NULL,
+    "label" varchar(255) NOT NULL,
+    "label_uk" varchar(255) NULL,
+    "label_en" varchar(255) NULL,
+    "order" integer NOT NULL DEFAULT 0,
+    "about_id" bigint NOT NULL
+);
+CREATE TABLE IF NOT EXISTS "core_flexobenefit" (
+    "id" bigserial NOT NULL PRIMARY KEY,
+    "title" varchar(255) NOT NULL,
+    "title_uk" varchar(255) NULL,
+    "title_en" varchar(255) NULL,
+    "text" text NOT NULL,
+    "text_uk" text NULL,
+    "text_en" text NULL,
+    "icon_svg" text NOT NULL DEFAULT '',
+    "order" integer NOT NULL DEFAULT 0,
+    "flexo_id" bigint NOT NULL
+);
+            """,
+            reverse_sql=migrations.RunSQL.noop,
+        ),
         migrations.CreateModel(
             name='BagsSection',
             fields=[

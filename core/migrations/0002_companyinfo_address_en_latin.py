@@ -4,12 +4,11 @@ from django.db import migrations
 class Migration(migrations.Migration):
     """
     Stub migration kept for DB history compatibility.
-    Models referenced here were removed; all required schema
-    is covered by the squashed 0001_initial.
+    All fields were included in the squashed 0001_initial.
     """
 
     dependencies = [
-        ("core", "0002_companyinfo_address_en_latin"),
+        ("core", "0001_initial"),
     ]
 
     operations = []

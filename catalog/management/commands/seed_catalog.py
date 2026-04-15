@@ -19,14 +19,6 @@ CATEGORIES = [
         "description_en": "Polyethylene, polypropylene and BOPP films for packaging various goods.",
         "order": 2,
     },
-    {
-        "name_uk": "Коробки та мішки",
-        "name_en": "Boxes & Bags",
-        "slug": "korobky",
-        "description_uk": "Картонні коробки, поліпропіленові мішки та паперові пакети.",
-        "description_en": "Cardboard boxes, polypropylene bags and paper packages.",
-        "order": 3,
-    },
 ]
 
 PRODUCTS = [
@@ -124,71 +116,11 @@ Own production in Dnipro. Orders from 500 kg.""",
         "meta_keywords_en": "BOPP film, polypropylene film, packaging film, buy film manufacturer Dnipro Ukraine",
         "order": 2,
     },
-    {
-        "name_uk": "Картонні коробки на замовлення",
-        "name_en": "Custom Cardboard Boxes",
-        "slug": "kartonni-korobky",
-        "category_slug": "korobky",
-        "short_description_uk": "Картонні коробки будь-яких розмірів, форм та кількості. Друк логотипу, розробка дизайну.",
-        "short_description_en": "Cardboard boxes of any size, shape and quantity. Logo printing, design development.",
-        "description_uk": """Картонні коробки — надійна та естетична упаковка для широкого спектру товарів. Виробляємо на замовлення за вашими розмірами.
-
-Типи коробок:
-— Звичайні прямокутні (RSC, FOL)
-— Коробки з клапаном
-— Самозбірні коробки
-— Коробки-пеналки
-— Коробки зі вставками та ложементами
-— Архівні коробки
-
-Матеріали:
-— Мікрогофрокартон (E-flute)
-— Тришарова гофра (B, C flute)
-— Пятишарова гофра (BC, EB flute)
-— Твердий картон 1.5–3 мм
-
-Друк:
-— Флексодрук 1-4 кольори
-— Офсетний друк (на замовлення)
-— Без друку (крафт)
-
-Виготовляємо від 500 шт. Доставка по Україні.""",
-        "description_en": """Cardboard boxes — reliable and aesthetic packaging for a wide range of goods. We produce to order according to your dimensions.
-
-Box types:
-— Regular rectangular (RSC, FOL)
-— Flap boxes
-— Self-assembling boxes
-— Tube boxes
-— Boxes with inserts and trays
-— Archive boxes
-
-Materials:
-— Micro corrugated (E-flute)
-— Three-layer corrugated (B, C flute)
-— Five-layer corrugated (BC, EB flute)
-— Solid cardboard 1.5–3 mm
-
-Printing:
-— Flexo printing 1-4 colors
-— Offset printing (on request)
-— No printing (kraft)
-
-Production from 500 pcs. Delivery throughout Ukraine.""",
-        "sku": "MAG-BOX-001",
-        "meta_title_uk": "Картонні коробки на замовлення від виробника | Magnum Дніпро",
-        "meta_title_en": "Custom Cardboard Boxes from Manufacturer | Magnum Dnipro",
-        "meta_description_uk": "Картонні коробки на замовлення від виробника Magnum (Дніпро). Будь-які розміри, друк, доставка по Україні.",
-        "meta_description_en": "Custom cardboard boxes from Magnum manufacturer (Dnipro). Any sizes, printing, delivery across Ukraine.",
-        "meta_keywords_uk": "картонні коробки, коробки на замовлення, гофрокоробки, купити коробки виробник Дніпро",
-        "meta_keywords_en": "cardboard boxes, custom boxes, corrugated boxes, buy boxes manufacturer Dnipro Ukraine",
-        "order": 1,
-    },
 ]
 
 
 class Command(BaseCommand):
-    help = "Seeds the database with initial catalog data (3 products + categories)"
+    help = "Seeds the database with initial catalog data (2 products + categories)"
 
     def handle(self, *args, **options):
         self.stdout.write("Creating categories...")

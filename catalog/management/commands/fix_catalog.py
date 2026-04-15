@@ -1,7 +1,7 @@
 """
 One-shot fix for the live database:
-- Deactivate 3 unwanted products (bags, paper, boxes)
-- Deactivate korobky category
+- Deactivate 2 unwanted products (bags, paper); boxes removed via migration 0002
+- Deactivate korobky category (if still present)
 - Update all product brands to "Magnum"
 - Create 3 missing products if not existing
 """
@@ -15,7 +15,6 @@ logger = logging.getLogger(__name__)
 BAD_PRODUCT_SLUGS = [
     "mishky-polipropilenovi",  # Polypropylene bags
     "papirovi-pakety",          # Paper bags
-    "kartonni-korobky",         # Cardboard boxes
 ]
 
 # Missing products to create

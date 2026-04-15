@@ -5,6 +5,7 @@ pip install -r requirements.txt
 
 python manage.py collectstatic --noinput
 python manage.py migrate --noinput
+python manage.py ensure_superuser
 python manage.py compilemessages --locale=uk --locale=en
 python manage.py seed_cms_content
 python manage.py seed_catalog

@@ -11,9 +11,9 @@
     <div class="footer-brand">
       <a href="{% url 'core:landing' %}" class="footer-logo">
         <span class="logo-mark">M</span>
-        <span class="logo-text">MAGNUM</span>
+        <span class="logo-text">{{ settings.site_name }}</span>
       </a>
-      <p class="footer-tagline">{% trans "Виробництво якісного пакування" %}</p>
+      <p class="footer-tagline">{{ settings.tagline }}</p>
     </div>
 
     <nav class="footer-nav" aria-label="{% trans 'Навігація в підвалі' %}">
@@ -52,7 +52,7 @@
   </div>
 
   <div class="footer-bottom">
-    <p>&copy; {% now "Y" %} Корпорація Магнум. {% trans "Всі права захищені." %}</p>
+    <p>&copy; {% now "Y" %} {{ settings.site_name }}. {{ settings.copyright_text }}</p>
     <a href="{% url 'django.contrib.sitemaps.views.sitemap' %}" class="footer-sitemap-link">Sitemap</a>
   </div>
 </footer>

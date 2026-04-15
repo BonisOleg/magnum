@@ -18,13 +18,13 @@
       {% if active_category %}
         {{ active_category.name }}
       {% else %}
-        {% trans "Каталог продукції" %}
+        {{ catalog_content.hero_title }}
       {% endif %}
     </h1>
     {% if active_category and active_category.description %}
       <p class="catalog-hero__desc">{{ active_category.description }}</p>
     {% else %}
-      <p class="catalog-hero__desc">{% trans "Власне виробництво пакувальних матеріалів — пакети, плівки, коробки. Від 1 кг до великих тиражів." %}</p>
+      <p class="catalog-hero__desc">{{ catalog_content.hero_description }}</p>
     {% endif %}
   </div>
 </section>
@@ -105,9 +105,9 @@
 <!-- CTA -->
 <section class="catalog-cta">
   <div class="container">
-    <h2>{% trans "Не знайшли потрібне?" %}</h2>
-    <p>{% trans "Ми виготовляємо упаковку на замовлення за вашими розмірами та дизайном." %}</p>
-    <a href="{% url 'core:landing' %}#contact" class="btn btn--primary">{% trans "Замовити індивідуально" %}</a>
+    <h2>{{ catalog_content.cta_title }}</h2>
+    <p>{{ catalog_content.cta_description }}</p>
+    <a href="{% url 'core:landing' %}#contact" class="btn btn--primary">{{ catalog_content.cta_button_text }}</a>
   </div>
 </section>
 

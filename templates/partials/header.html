@@ -3,9 +3,9 @@
 
 <header class="site-header" id="site-header">
   <div class="header-inner">
-    <a href="{% url 'core:landing' %}" class="logo" aria-label="Magnum — {% trans 'Головна' %}">
+    <a href="{% url 'core:landing' %}" class="logo" aria-label="{{ settings.site_name }} — {% trans 'Головна' %}">
       <span class="logo-mark">M</span>
-      <span class="logo-text">MAGNUM</span>
+      <span class="logo-text">{{ settings.site_name }}</span>
     </a>
 
     <button class="nav-toggle" id="nav-toggle" aria-label="{% trans 'Меню' %}" aria-expanded="false" aria-controls="main-nav">

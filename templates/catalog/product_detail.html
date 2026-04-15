@@ -39,7 +39,7 @@
     "url": "{{ request.build_absolute_uri }}",
     "seller": {
       "@type": "Organization",
-      "name": "Корпорація Магнум",
+      "name": "{{ settings.site_name }}",
       "url": "{{ request.scheme }}://{{ request.get_host }}"
     }
   }
@@ -136,13 +136,13 @@
 
         <div class="product-actions">
           <a href="{% url 'core:landing' %}#contact" class="btn btn--primary btn--full">
-            {% trans "Замовити / Дізнатися ціну" %}
+            {{ catalog_content.order_cta_text }}
           </a>
-          <a href="tel:+380733777333" class="btn btn--outline btn--full">
+          <a href="tel:{{ company.phone|urlencode }}" class="btn btn--outline btn--full">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.64 3.33 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 7.05 7.05l.96-.96a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
             </svg>
-            +38 073 3 777 333
+            {{ company.phone }}
           </a>
         </div>
       </div>
@@ -152,7 +152,7 @@
   {% if product.description %}
   <section class="product-description" aria-labelledby="desc-title">
     <div class="container">
-      <h2 id="desc-title">{% trans "Опис продукту" %}</h2>
+      <h2 id="desc-title">{{ catalog_content.product_desc_heading }}</h2>
       <div class="product-description__body">
         {{ product.description|linebreaks }}
       </div>
@@ -163,7 +163,7 @@
   {% if related %}
   <section class="related-products" aria-labelledby="related-title">
     <div class="container">
-      <h2 id="related-title">{% trans "Схожі товари" %}</h2>
+      <h2 id="related-title">{{ catalog_content.related_heading }}</h2>
     </div>
     <div class="preview-strip">
       {% for rel in related %}

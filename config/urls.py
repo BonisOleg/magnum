@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from core.sitemaps import StaticViewSitemap
 from catalog.sitemaps import ProductSitemap, CategorySitemap
 
-admin.site.site_header = "Корпорація Магнум"
+admin.site.site_header = "Magnum"
 admin.site.site_title = "Magnum Admin"
 admin.site.index_title = "Панель керування"
 
